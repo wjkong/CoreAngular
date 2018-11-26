@@ -1,16 +1,23 @@
 import { Component, OnInit } from '@angular/core';
+import { InstallPayment } from './installPayment';
 
 @Component({
   selector: 'app-mortgage-calculator',
   templateUrl: './mortgage-calculator.component.html'
 })
+
+
+
 export class MortgageCalculatorComponent implements OnInit {
+ 
+
   yearArray: number[] = [];
   principal: number;
   rate: number;
   frequency: number;
   amortization: number;
   paymentAmtPerPeriod: number;
+ 
 
   constructor()
   {
@@ -25,6 +32,7 @@ export class MortgageCalculatorComponent implements OnInit {
   }
 
   calculate() {
+     
     this.paymentAmtPerPeriod = this.CalculatePayment(this.principal, this.rate, this.amortization, this.frequency);
   }
 
