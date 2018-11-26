@@ -3,19 +3,19 @@
     <div class="form-group required">
       <label class="control-label col-sm-3" for="txtMortgageAmt">Mortgage Amount</label>
       <div class="col-sm-9">
-        <input type=text id="txtMortgageAmt" class="form-control" maxlength=9 autofocus />
+        <input type=text id="txtMortgageAmt" class="form-control" maxlength=9 autofocus [(ngModel)]="principal" />
       </div>
     </div>
     <div class="form-group required">
       <label class="control-label col-sm-3" for="txtInterestRate">Interest Rate</label>
       <div class="col-sm-9">
-        <input type=text id="txtInterestRate" class="form-control" maxlength=4  />
+        <input type=text id="txtInterestRate" class="form-control" maxlength=4 [(ngModel)]="rate" />
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-3" for="ddlPaymentFrequency">Payment Frequency</label>
       <div class="col-sm-9">
-        <select id="ddlPaymentFrequency" class="form-control">
+        <select id="ddlPaymentFrequency" class="form-control" [(ngModel)]="frequency">
           <option value="12">Monthly</option>
           <option value="24">Semi-Monthly</option>
           <option value="26">Bi-weekly</option>
@@ -28,14 +28,36 @@
     <div class="form-group">
       <label class="control-label col-sm-3" for="ddlAmortizationPeriod">AmortizationPeriod</label>
       <div class="col-sm-9">
-        <select class="form-control">
+        <select class="form-control" [(ngModel)]="amortization">
           <option *ngFor="let year of yearArray">{{year}}</option>
         </select>
       </div>
-    <div class="form-group">
-      <div class="col-sm-offset-3 col-sm-9">
-        <button type="button" class="btn btn-success" id=btnCalculate data-state="Calculate">Calculate</button>
+      <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-9">
+          <button type="button" class="btn btn-success" id=btnCalculate (click)="calculate()">Calculate</button>
+        </div>
+      </div>
+      <div id="detail">
+        <table class="table table-striped">
+          <tbody>
+            <tr>
+              <th>Payment Frequency</th>
+              <th>Payment</th>
+              <th>Monthly Payment</th>
+              <th>Total Payment</th>
+              <th class="hidden-xs">Cost of Borrow</th>
+              <th class="hidden-xs">Save Money</th>
+            </tr>
+            <tr class="success">
+              <td>Monthly</td>
+              <td>{{ paymentAmtPerPeriod }}</td>
+              <td>{{ paymentAmtPerPeriod }}</td>
+              <td>$12,748.23</td>
+              <td class="hidden-xs">$2,748.23</td>
+              <td class="hidden-xs">$0.00</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
-    <div id="detail"></div>
 </div>
