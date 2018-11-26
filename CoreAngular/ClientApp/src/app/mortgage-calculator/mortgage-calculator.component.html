@@ -1,18 +1,18 @@
 <div class=wrapper>
     <div id="divPaymentAmt" class="alert alert-success" style="display:none"></div>
-    <div class="form-group required">
+    <div class="form-group row" style="padding-bottom:10px">
       <label class="control-label col-sm-3" for="txtMortgageAmt">Mortgage Amount</label>
       <div class="col-sm-9">
-        <input type=text id="txtMortgageAmt" class="form-control" maxlength=9 autofocus [(ngModel)]="principal" />
+        <input type=text id="txtMortgageAmt" class="form-control" maxlength="12" android:m axLength="12" autofocus [(ngModel)]="principal" currencyMask [options]="{ precision: 0, allowNegative: false, allowZero: false }" />
       </div>
     </div>
-    <div class="form-group required">
+    <div class="form-group row">
       <label class="control-label col-sm-3" for="txtInterestRate">Interest Rate</label>
       <div class="col-sm-9">
-        <input type=text id="txtInterestRate" class="form-control" maxlength=4 [(ngModel)]="rate" />
+        <input type=text id="txtInterestRate" class="form-control" maxlength=5 [(ngModel)]="rate" currencyMask [options]="{ prefix: '', allowNegative: false, allowZero: false }" />
       </div>
     </div>
-    <div class="form-group">
+    <div class="form-group row">
       <label class="control-label col-sm-3" for="ddlPaymentFrequency">Payment Frequency</label>
       <div class="col-sm-9">
         <select id="ddlPaymentFrequency" class="form-control" [(ngModel)]="frequency">
@@ -25,14 +25,16 @@
         </select>
       </div>
     </div>
-    <div class="form-group">
+    <div class="form-group row">
       <label class="control-label col-sm-3" for="ddlAmortizationPeriod">AmortizationPeriod</label>
       <div class="col-sm-9">
         <select class="form-control" [(ngModel)]="amortization">
           <option *ngFor="let year of yearArray">{{year}}</option>
         </select>
       </div>
-      <div class="form-group">
+    </div>
+  <p>   </p>
+      <div class="form-group row">
         <div class="col-sm-offset-3 col-sm-9">
           <button type="button" class="btn btn-success" id=btnCalculate (click)="calculate()">Calculate</button>
         </div>
@@ -50,8 +52,8 @@
             </tr>
             <tr class="success">
               <td>Monthly</td>
-              <td>{{ paymentAmtPerPeriod }}</td>
-              <td>{{ paymentAmtPerPeriod }}</td>
+              <td>{{ paymentAmtPerPeriod | currency:"CAD":"symbol-narrow" }}</td>
+              <td>{{ paymentAmtPerPeriod | currency:"CAD":"symbol-narrow"}}</td>
               <td>$12,748.23</td>
               <td class="hidden-xs">$2,748.23</td>
               <td class="hidden-xs">$0.00</td>
@@ -59,5 +61,5 @@
           </tbody>
         </table>
       </div>
-    </div>
+   
 </div>

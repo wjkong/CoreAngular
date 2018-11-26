@@ -26,8 +26,6 @@ export class MortgageCalculatorComponent implements OnInit {
 
   calculate() {
     this.paymentAmtPerPeriod = this.CalculatePayment(this.principal, this.rate, this.amortization, this.frequency);
-
-    alert("Le" + this.paymentAmtPerPeriod);
   }
 
   CalculatePayment(principal, rate, amortization, frequency) {
