@@ -3,4 +3,7 @@ export class InstallPayment {
   monthlyPayment: number;
   installPayment: number;
   totalCostOfBorrow: number;
+  totalPayment: number;
+  frequency: string;
+  amountSave: number;
 }

@@ -17,6 +17,7 @@ export class MortgageCalculatorComponent implements OnInit {
   frequency: number;
   amortization: number;
   paymentAmtPerPeriod: number;
+  payment: InstallPayment;
  
 
   constructor()
@@ -32,8 +33,15 @@ export class MortgageCalculatorComponent implements OnInit {
   }
 
   calculate() {
-     
-    this.paymentAmtPerPeriod = this.CalculatePayment(this.principal, this.rate, this.amortization, this.frequency);
+    this.payment = new InstallPayment();
+    this.payment.frequency = "Monthly";
+    this.payment.installPayment = this.CalculatePayment(this.principal, this.rate, this.amortization, this.frequency);
+    this.payment.totalPayment = this.CalculateTotalPayment(this.payment.installPayment, this.amortization, this.frequency);
+    this.payment.totalCostOfBorrow = this.CalculateCostOfBorrow(this.principal, this.payment.totalPayment);
+    this.payment.monthlyPayment = this.CalculateMonthlyPayment(this.payment.installPayment, this.frequency);
+
+
+ 
   }
 
   CalculatePayment(principal, rate, amortization, frequency) {
