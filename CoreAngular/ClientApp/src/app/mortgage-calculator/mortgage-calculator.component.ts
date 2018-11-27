@@ -10,10 +10,10 @@ import { InstallPayment } from './installPayment';
 
 export class MortgageCalculatorComponent implements OnInit {
   yearArray: number[] = [];
-  principal: number;
+  principal: number = 0;
   rate: number = 0;
-  frequency: number;
-  amortization: number;
+  frequency: number = 12;
+  amortization: number = 1;
   paymentAmtPerPeriod: number;
   payments: InstallPayment[];
   showDetail: boolean = false;
