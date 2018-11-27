@@ -11,7 +11,7 @@ import { InstallPayment } from './installPayment';
 export class MortgageCalculatorComponent implements OnInit {
   yearArray: number[] = [];
   principal: number;
-  rate: number;
+  rate: number = 0;
   frequency: number;
   amortization: number;
   paymentAmtPerPeriod: number;
@@ -34,7 +34,7 @@ export class MortgageCalculatorComponent implements OnInit {
   }
 
   calculate() {
-    if (this.frequency > 0 && this.amortization > 0) {
+    if (this.frequency > 0 && this.amortization > 0 && this.principal > 0) {
       this.showDetail = true;
       this.payments = [];
 
