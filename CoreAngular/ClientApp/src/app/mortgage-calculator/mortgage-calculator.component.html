@@ -1,15 +1,16 @@
 <div class=wrapper>
+    <p></p>
     <div id="divPaymentAmt" class="alert alert-success" style="display:none"></div>
     <div class="form-group row" style="padding-bottom:10px">
       <label class="control-label col-sm-3" for="txtMortgageAmt">Mortgage Amount</label>
       <div class="col-sm-9">
-        <input type=text id="txtMortgageAmt" class="form-control" maxlength="12" android:m axLength="12" autofocus [(ngModel)]="principal" currencyMask [options]="{ precision: 0, allowNegative: false, allowZero: false }" />
+        <input type=text id="txtMortgageAmt" class="form-control" maxlength="12" android:m axLength="12" (blur)="calculate()" autofocus [(ngModel)]="principal" currencyMask [options]="{ precision: 0, allowNegative: false, allowZero: false }" />
       </div>
     </div>
     <div class="form-group row">
       <label class="control-label col-sm-3" for="txtInterestRate">Interest Rate</label>
       <div class="col-sm-9">
-        <input type=text id="txtInterestRate" class="form-control" maxlength=5 [(ngModel)]="rate" currencyMask [options]="{ prefix: '', allowNegative: false, allowZero: false }" />
+        <input type=text id="txtInterestRate" class="form-control" maxlength=5 [(ngModel)]="rate" (blur)="calculate()" currencyMask [options]="{ prefix: '', allowNegative: false, allowZero: false }" />
       </div>
     </div>
     <div class="form-group row">
@@ -26,9 +27,9 @@
       </div>
     </div>
     <div class="form-group row">
-      <label class="control-label col-sm-3" for="ddlAmortizationPeriod">AmortizationPeriod</label>
+      <label class="control-label col-sm-3" for="ddlAmortizationPeriod" >AmortizationPeriod</label>
       <div class="col-sm-9">
-        <select class="form-control" [(ngModel)]="amortization">
+        <select class="form-control" [(ngModel)]="amortization" (change)="calculate()">
           <option *ngFor="let year of yearArray">{{year}}</option>
         </select>
       </div>
@@ -39,7 +40,7 @@
           <button type="button" class="btn btn-success" id=btnCalculate (click)="calculate()">Calculate</button>
         </div>
       </div>
-      <div id="detail">
+      <div id="detail" *ngIf="showDetail">
         <table class="table table-striped">
           <tbody>
             <tr>
@@ -50,13 +51,13 @@
               <th class="hidden-xs">Cost of Borrow</th>
               <th class="hidden-xs">Save Money</th>
             </tr>
-            <tr class="success">
-              <td>{{ payment.frequency }}</td>
+            <tr *ngFor="let payment of payments" [ngClass]="{'success' : payment.frequency == frequency}">
+              <td>{{ payment.freq }}</td>
               <td>{{ payment.installPayment | currency:"CAD":"symbol-narrow" }}</td>
               <td>{{ payment.monthlyPayment | currency:"CAD":"symbol-narrow"}}</td>
               <td>{{ payment.totalPayment | currency:"CAD":"symbol-narrow"}}</td>
               <td class="hidden-xs">{{ payment.totalCostOfBorrow | currency:"CAD":"symbol-narrow"}}</td>
-              <td class="hidden-xs">$0.00</td>
+              <td class="hidden-xs">{{ payment.amountSave | currency:"CAD":"symbol-narrow"}}</td>
             </tr>
           </tbody>
         </table>

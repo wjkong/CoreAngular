@@ -9,19 +9,20 @@ import { InstallPayment } from './installPayment';
 
 
 export class MortgageCalculatorComponent implements OnInit {
- 
-
   yearArray: number[] = [];
   principal: number;
   rate: number;
   frequency: number;
   amortization: number;
   paymentAmtPerPeriod: number;
-  payment: InstallPayment;
+  payments: InstallPayment[];
+  showDetail: boolean = false;
  
 
   constructor()
   {
+    this.payments = [];
+
     for (var i = 1; i <= 25; i++)
     {
       this.yearArray.push(i);
@@ -33,15 +34,32 @@ export class MortgageCalculatorComponent implements OnInit {
   }
 
   calculate() {
-    this.payment = new InstallPayment();
-    this.payment.frequency = "Monthly";
-    this.payment.installPayment = this.CalculatePayment(this.principal, this.rate, this.amortization, this.frequency);
-    this.payment.totalPayment = this.CalculateTotalPayment(this.payment.installPayment, this.amortization, this.frequency);
-    this.payment.totalCostOfBorrow = this.CalculateCostOfBorrow(this.principal, this.payment.totalPayment);
-    this.payment.monthlyPayment = this.CalculateMonthlyPayment(this.payment.installPayment, this.frequency);
+    if (this.frequency > 0 && this.amortization > 0) {
+      this.showDetail = true;
+      this.payments = [];
+
+      var totalMonthlyCostOfBorrow;
+      var freq = [12, 24, 26, 52];
+      var freqName = ["Monthly", "Semi-monthly", "Bi-weekly", "Weekly"];
+
+      for (var i = 0; i < freq.length; i++) {
+        this.payments[i] = new InstallPayment();
+
+        this.payments[i].frequency = freq[i];
+        this.payments[i].freq = freqName[i];
+        this.payments[i].installPayment = this.CalculatePayment(this.principal, this.rate, this.amortization, freq[i]);
+        this.payments[i].totalPayment = this.CalculateTotalPayment(this.payments[i].installPayment, this.amortization, freq[i]);
+        this.payments[i].totalCostOfBorrow = this.CalculateCostOfBorrow(this.principal, this.payments[i].totalPayment);
+        this.payments[i].monthlyPayment = this.CalculateMonthlyPayment(this.payments[i].installPayment, freq[i]);
+
+        if (freq[i] == 12)
+          totalMonthlyCostOfBorrow = this.payments[i].totalCostOfBorrow;
+
+        this.payments[i].amountSave = totalMonthlyCostOfBorrow - this.payments[i].totalCostOfBorrow;
 
 
- 
+      }
+    }
   }
 
   CalculatePayment(principal, rate, amortization, frequency) {
