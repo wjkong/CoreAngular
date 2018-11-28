@@ -21,31 +21,31 @@ namespace CoreAngular.Controllers
 
             connectionString = _configuration.GetConnectionString("appDbConnection");
 
-            //try
-            //{
-            //    connection = new SqlConnection(connectionString);
+            try
+            {
+                connection = new SqlConnection(connectionString);
 
-            //    using (var cmd = new SqlCommand
-            //    {
-            //        Connection = connection,
-            //        CommandText = @"INSERT INTO [dbo].[account] ([username] ,[password]) VALUES (@username, @password)",
-            //        CommandType = CommandType.Text
-            //    })
-            //    {
-            //        connection = null;
+                using (var cmd = new SqlCommand
+                {
+                    Connection = connection,
+                    CommandText = @"INSERT INTO [dbo].[account] ([username] ,[password]) VALUES (@username, @password)",
+                    CommandType = CommandType.Text
+                })
+                {
+                    connection = null;
 
-            //        cmd.Parameters.AddWithValue("@username", "Shun Shun");
-            //        cmd.Parameters.AddWithValue("@password", "12313");
+                    cmd.Parameters.AddWithValue("@username", "Shun Shun");
+                    cmd.Parameters.AddWithValue("@password", "12313");
 
-            //        cmd.Connection.Open();
-            //        cmd.ExecuteNonQuery();
-            //    }
+                    cmd.Connection.Open();
+                    cmd.ExecuteNonQuery();
+                }
 
-            //}
-            //finally
-            //{
-            //    connection?.Dispose();
-            //}
+            }
+            finally
+            {
+                connection?.Dispose();
+            }
         }
 
         private static string[] Summaries = new[]
