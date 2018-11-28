@@ -5,7 +5,7 @@
     "region"  : "ca-central-1",
     "application" : "Angular",
     "environment" : "Angular-dev",
-    "cname"       : "angular-prod",
+    "cname"       : "angular-dev",
     "solution-stack" : "64bit Windows Server Core 2016 v1.2.0 running IIS 10.0",
     "environment-type" : "SingleInstance",
     "instance-profile" : "aws-elasticbeanstalk-ec2-role",
