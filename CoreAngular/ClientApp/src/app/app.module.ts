@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { MortgageCalculatorComponent } from './mortgage-calculator/mortgage-calculator.component';
+import { UserRegisterComponent } from './user-register/user-register.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { MortgageCalculatorComponent } from './mortgage-calculator/mortgage-calc
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    MortgageCalculatorComponent
+    MortgageCalculatorComponent,
+    UserRegisterComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -31,6 +33,7 @@ import { MortgageCalculatorComponent } from './mortgage-calculator/mortgage-calc
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'mortgage-calculator', component: MortgageCalculatorComponent },
+      { path: 'user-register', component: UserRegisterComponent }
     ])
   ],
   providers: [],
