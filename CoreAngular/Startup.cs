@@ -1,10 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace CoreAngular
 {
@@ -27,6 +28,8 @@ namespace CoreAngular
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            //services.AddTransient<IDbConnection>((sp) => new SqlConnection(this.Configuration.GetConnectionString("appDbConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

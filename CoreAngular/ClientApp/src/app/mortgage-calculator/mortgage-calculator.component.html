@@ -1,16 +1,15 @@
 <div class=wrapper>
-    <p></p>
     <div id="divPaymentAmt" class="alert alert-success" style="display:none"></div>
     <div class="form-group row" style="padding-bottom:10px">
       <label class="control-label col-sm-3" for="txtMortgageAmt">Mortgage Amount</label>
       <div class="col-sm-9">
-        <input type=text id="txtMortgageAmt" class="form-control" maxlength="12" android:m axLength="12" (blur)="calculate()" autofocus [(ngModel)]="principal" currencyMask [options]="{ precision: 0, allowNegative: false, allowZero: false }" />
+        <input type=text id="txtMortgageAmt" class="form-control" maxlength="12" android:maxLength="12" (blur)="calculate()" autofocus [(ngModel)]="principal" currencyMask [options]="{ precision: 0, allowNegative: false, allowZero: false }" />
       </div>
     </div>
     <div class="form-group row">
       <label class="control-label col-sm-3" for="txtInterestRate">Interest Rate</label>
       <div class="col-sm-9">
-        <input type=text id="txtInterestRate" class="form-control" maxlength=5 [(ngModel)]="rate" (blur)="calculate()" currencyMask [options]="{ prefix: '', suffix: ' %', allowNegative: false, allowZero: false }" />
+        <input type=text id="txtInterestRate" class="form-control" maxlength=6 android:maxLength="6" [(ngModel)]="rate" (blur)="calculate()" currencyMask [options]="{ prefix: '', suffix: ' %', allowNegative: false, allowZero: false }" />
       </div>
     </div>
     <div class="form-group row">
@@ -21,15 +20,15 @@
           <option value="24">Semi-Monthly</option>
           <option value="26">Bi-weekly</option>
           <option value="52">Weekly</option>
-          <option value="28">Accelerated Bi-Weekly</option>
-          <option value="56">Accelerated Weekly</option>
+          <!--<option value="28">Accelerated Bi-Weekly</option>
+          <option value="56">Accelerated Weekly</option>-->
         </select>
       </div>
     </div>
     <div class="form-group row">
       <label class="control-label col-sm-3" for="ddlAmortizationPeriod" >AmortizationPeriod</label>
       <div class="col-sm-9">
-        <select class="form-control" [(ngModel)]="amortization" (change)="calculate()">
+        <select class="form-control" [(ngModel)]="amortization" id="ddlAmortizationPeriod" (change)="calculate()">
           <option *ngFor="let year of yearArray">{{year}}</option>
         </select>
       </div>
