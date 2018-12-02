@@ -1,4 +1,7 @@
-﻿using Konger.CoreAngular.Model;
+﻿using Amazon.SimpleSystemsManagement;
+using Amazon.SimpleSystemsManagement.Model;
+using Konger.CoreAngular.Model;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -7,6 +10,29 @@ namespace Konger.CoreAngular.DAL
 {
     public abstract class SQLHelper
     {
+
+        public static string GetDBConnectionString()
+        {
+            // The parameter name is customized based on the ASPNETCORE_ENVIRONMENT
+            //
+            // You can change this to a fixed string or use a different mechanism
+            // to customize.
+            String parameterName = String.Format("/MyWebApp/{0}/constr", Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"));
+
+            // Using USEast1
+            var ssmClient = new AmazonSimpleSystemsManagementClient(Amazon.RegionEndpoint.USEast1);
+            var request = new GetParameterRequest() {
+                Name = "/kongsolution/Prod/ConnectionStr",
+                WithDecryption = true
+            };
+
+            var response = ssmClient.GetParameterAsync(request);
+
+
+            return "Hello";
+
+            //return response.Parameter.Value;
+        }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities")]
         public static SqlCommand CreateCommand(string comText)

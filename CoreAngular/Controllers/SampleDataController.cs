@@ -1,3 +1,4 @@
+using Konger.CoreAngular.DAL;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -18,8 +19,9 @@ namespace CoreAngular.Controllers
             _configuration = configuration;
             SqlConnection connection = null;
 
-            connectionString = _configuration.GetConnectionString("appDbConnection");
+            //connectionString = _configuration.GetConnectionString("appDbConnection");
 
+            connectionString = SQLHelper.GetDBConnectionString();
             //try
             //{
             //    connection = new SqlConnection(connectionString);
