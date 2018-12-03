@@ -1,6 +1,7 @@
 using Konger.CoreAngular.DAL;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -8,15 +9,24 @@ using System.Linq;
 
 namespace CoreAngular.Controllers
 {
+
+
     [Route("api/[controller]")]
     public class SampleDataController : Controller
     {
+        protected readonly ILogger<SampleDataController> _logger;
+
         private readonly IConfiguration _configuration;
         private string connectionString;
 
-        public SampleDataController(IConfiguration configuration)
+        public SampleDataController(IConfiguration configuration, ILogger<SampleDataController> logger = null)
         {
+            _logger = logger;
+
+            _logger.LogInformation("Hello world!");
+            _logger.LogWarning("Warn you stay away");
             _configuration = configuration;
+            _logger.LogError("Exception");
             SqlConnection connection = null;
 
             //connectionString = _configuration.GetConnectionString("appDbConnection");
