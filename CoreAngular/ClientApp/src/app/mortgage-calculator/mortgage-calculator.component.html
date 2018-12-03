@@ -54,7 +54,7 @@
           <tr *ngFor="let payment of payments" [ngClass]="{'success' : payment.frequency == frequency}">
             <td>{{ payment.freq }}</td>
             <td>{{ payment.installPayment | currency:"CAD":"symbol-narrow" }}</td>
-            <td>{{ payment.monthlyPayment | currency:"CAD":"symbol-narrow"}}</td>
+            <td class="hidden-xs">{{ payment.monthlyPayment | currency:"CAD":"symbol-narrow"}}</td>
             <td>{{ payment.totalPayment | currency:"CAD":"symbol-narrow"}}</td>
             <td class="hidden-xs">{{ payment.totalCostOfBorrow | currency:"CAD":"symbol-narrow"}}</td>
             <td class="hidden-xs">{{ payment.amountSave | currency:"CAD":"symbol-narrow"}}</td>
