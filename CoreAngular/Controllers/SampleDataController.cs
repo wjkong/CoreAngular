@@ -1,4 +1,4 @@
-using Konger.CoreAngular.DAL;
+using Konger.CoreAngular.Model;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -26,6 +26,14 @@ namespace CoreAngular.Controllers
                 TemperatureC = rng.Next(-20, 55),
                 Summary = Summaries[rng.Next(Summaries.Length)]
             });
+        }
+
+        [HttpPost("[action]")]
+        public bool RegisterUser([FromBody]Account account)
+        {
+            bool success = false;
+
+            return success;
         }
 
         public class WeatherForecast

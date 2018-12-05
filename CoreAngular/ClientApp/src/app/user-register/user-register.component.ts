@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { User } from './user';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-user-register',
@@ -7,14 +8,20 @@ import { User } from './user';
 })
 export class UserRegisterComponent implements OnInit {
   user = new User();
+  _baseUrl: string;
 
-  constructor() { }
+  constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string)
+  {
+    this._baseUrl = baseUrl;
+  }
 
   ngOnInit() {
   }
 
   register(user: User): void {
-    console.log(user);
+    this.http.post<Boolean>(this._baseUrl + 'api/SampleData/RegisterUser', user).subscribe(result => {
+      console.log(result);
+    }, error => console.error(error));
   }
 
 }
