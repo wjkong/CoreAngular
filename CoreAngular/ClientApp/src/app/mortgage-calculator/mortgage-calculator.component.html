@@ -10,7 +10,7 @@
     <div class="form-group row">
       <label class="control-label col-sm-3 required" for="txtInterestRate">Interest Rate</label>
       <div class="col-sm-9">
-        <input type=text id="txtInterestRate" class="form-control required" maxlength=6 android:maxLength="6" [(ngModel)]="rate" (blur)="calculate()" currencyMask [options]="{ prefix: '', suffix: ' %', allowNegative: false, allowZero: false }" />
+        <input type=text id="txtInterestRate" class="form-control required" maxlength=65android:maxLength="6" [(ngModel)]="rate" (blur)="calculate()" />
       </div>
     </div>
     <div class="form-group row">
@@ -46,7 +46,7 @@
           <tr>
             <th>Payment Frequency</th>
             <th>Payment</th>
-            <th>Monthly Payment</th>
+            <th class="hidden-xs">Monthly Payment</th>
             <th>Total Payment</th>
             <th class="hidden-xs">Cost of Borrow</th>
             <th class="hidden-xs">Save Money</th>
