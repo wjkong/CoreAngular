@@ -1,10 +1,9 @@
-using Konger.CoreAngular.DAL;
+using Konger.CoreAngular.Logic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 
 namespace CoreAngular.Controllers
@@ -21,42 +20,11 @@ namespace CoreAngular.Controllers
 
         public SampleDataController(IConfiguration configuration, ILogger<SampleDataController> logger = null)
         {
-            _logger = logger;
+            var account = new AccountMgr();
+            account.UserName = "WeiJunKong";
+            account.Password = "1232232232";
 
-            _logger.LogInformation("Hello world!");
-            _logger.LogWarning("Warn you stay away");
-            _configuration = configuration;
-            _logger.LogError("Exception");
-            SqlConnection connection = null;
-
-            //connectionString = _configuration.GetConnectionString("appDbConnection");
-
-            connectionString = SQLHelper.GetDBConnectionString();
-            //try
-            //{
-            //    connection = new SqlConnection(connectionString);
-
-            //    using (var cmd = new SqlCommand
-            //    {
-            //        Connection = connection,
-            //        CommandText = @"INSERT INTO [dbo].[account] ([username] ,[password]) VALUES (@username, @password)",
-            //        CommandType = CommandType.Text
-            //    })
-            //    {
-            //        connection = null;
-
-            //        cmd.Parameters.AddWithValue("@username", "Shun Shun");
-            //        cmd.Parameters.AddWithValue("@password", "12313");
-
-            //        cmd.Connection.Open();
-            //        cmd.ExecuteNonQuery();
-            //    }
-
-            //}
-            //finally
-            //{
-            //    connection?.Dispose();
-            //}
+            bool success = account.Add();
         }
 
         private static string[] Summaries = new[]
