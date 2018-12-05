@@ -14,16 +14,25 @@ namespace Konger.CoreAngular.Logic
 
         public bool Add()
         {
-            //var dacMgr = ServiceLocator.Current.GetInstance<IAccountDacMgr>();
+            bool result = false;
 
-            return dacMgr.InsertUser();
+            try
+            {
+                result = dacMgr.InsertUser();
+            }
+            catch
+            {
+
+            }
+
+            return result;
         }
 
 
 
         public bool Login()
         {
-           
+
 
             return dacMgr.LoginDAC();
         }

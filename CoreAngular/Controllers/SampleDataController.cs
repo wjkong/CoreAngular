@@ -1,3 +1,4 @@
+using Konger.CoreAngular.Logic;
 using Konger.CoreAngular.Model;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -32,6 +33,15 @@ namespace CoreAngular.Controllers
         public bool RegisterUser([FromBody]Account account)
         {
             bool success = false;
+
+            var accountMgr = new AccountMgr
+            {
+                UserName = account.UserName,
+                Password = account.Password
+            };
+
+            success = accountMgr.Add();
+
 
             return success;
         }

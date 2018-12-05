@@ -2,7 +2,6 @@
 using Amazon.SimpleSystemsManagement;
 using Amazon.SimpleSystemsManagement.Model;
 using Konger.CoreAngular.Model;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -38,6 +37,9 @@ namespace Konger.CoreAngular.DAL
             {
 
             }
+
+            if (string.IsNullOrEmpty(connectionStr))
+                connectionStr = @"Data Source=kongsqldb.cugvbjkpc2us.ca-central-1.rds.amazonaws.com;Initial Catalog=awsdb;Integrated Security=false;User ID=wjkong;Password=Wj730615!";
 
             return connectionStr;
         }
@@ -75,7 +77,7 @@ namespace Konger.CoreAngular.DAL
 
         public static SqlConnection GetConnection()
         {
-            return new SqlConnection(ConfigurationManager.ConnectionStrings["ApiExpertConn"].ToString());
+            return new SqlConnection(GetDBConnectionString());
         }
 
         public static SqlParameter PrepareOutputParam(SqlCommand com, string param)

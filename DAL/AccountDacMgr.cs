@@ -14,6 +14,7 @@ namespace Konger.CoreAngular.DAL
         public bool InsertUser()
         {
             var success = false;
+
             using (var connection = SQLHelper.GetConnection())
             {
                 using (var cmd = new SqlCommand())
