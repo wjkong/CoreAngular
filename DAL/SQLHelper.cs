@@ -14,29 +14,29 @@ namespace Konger.CoreAngular.DAL
         {
             string connectionStr = string.Empty;
 
-            try
-            {
-                var creds = new InstanceProfileAWSCredentials();
-                var ssmClient = new AmazonSimpleSystemsManagementClient(creds);
-                var request = new GetParameterRequest()
-                {
-                    Name = "/kongsolution/Prod/ConnectionStr",
-                    WithDecryption = true
-                };
+            //try
+            //{
+            //    var creds = new InstanceProfileAWSCredentials();
+            //    var ssmClient = new AmazonSimpleSystemsManagementClient(creds);
+            //    var request = new GetParameterRequest()
+            //    {
+            //        Name = "/kongsolution/Prod/ConnectionStr",
+            //        WithDecryption = true
+            //    };
 
-                var response = ssmClient.GetParameterAsync(request).GetAwaiter().GetResult();
+            //    var response = ssmClient.GetParameterAsync(request).GetAwaiter().GetResult();
 
-                if (response.Parameter != null)
-                {
-                    connectionStr = response.Parameter.Value;
+            //    if (response.Parameter != null)
+            //    {
+            //        connectionStr = response.Parameter.Value;
 
-                }
+            //    }
 
-            }
-            catch
-            {
+            //}
+            //catch
+            //{
 
-            }
+            //}
 
             if (string.IsNullOrEmpty(connectionStr))
                 connectionStr = @"Data Source=kongsqldb.cugvbjkpc2us.ca-central-1.rds.amazonaws.com;Initial Catalog=awsdb;Integrated Security=false;User ID=wjkong;Password=Wj730615!";

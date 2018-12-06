@@ -5,11 +5,12 @@ namespace Konger.CoreAngular.Logic
 {
     public class AccountMgr : Account
     {
+
         AccountDacMgr dacMgr;
 
-        public AccountMgr()
+        public AccountMgr(Account _account)
         {
-            dacMgr = new AccountDacMgr();
+            dacMgr = new AccountDacMgr(_account);
         }
 
         public bool Add()
@@ -30,19 +31,19 @@ namespace Konger.CoreAngular.Logic
 
 
 
-        public bool Login()
-        {
+        //public bool Login()
+        //{
 
 
-            return dacMgr.LoginDAC();
-        }
+        //    return dacMgr.LoginDAC();
+        //}
 
 
-        public void SetClone(Account account)
-        {
+        //public void SetClone(Account account)
+        //{
 
 
-            dacMgr.SetClone(account);
-        }
+        //    dacMgr.SetClone(account);
+        //}
     }
 }

@@ -34,11 +34,14 @@ namespace CoreAngular.Controllers
         {
             bool success = false;
 
-            var accountMgr = new AccountMgr
+            var userAccount = new Account
             {
                 UserName = account.UserName,
                 Password = account.Password
             };
+
+            var accountMgr = new AccountMgr(userAccount);
+
 
             success = accountMgr.Add();
 
