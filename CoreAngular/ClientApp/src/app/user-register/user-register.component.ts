@@ -20,7 +20,15 @@ export class UserRegisterComponent implements OnInit {
 
   register(user: User): void {
     this.http.post<Boolean>(this._baseUrl + 'api/SampleData/RegisterUser', user).subscribe(result => {
-      console.log(result);
+      if (result) {
+        user.password = "";
+        user.username = "";
+
+        alert("Successfully register new user");
+      }
+      else {
+        alert("Sorry, we are experience technical difficaulty");
+      }
     }, error => console.error(error));
   }
 
