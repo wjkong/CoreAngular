@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 
 namespace Konger.CoreAngular.DAL
 {
-    public class AccountDacMgr
+    public class AccountDacMgr : DataAccessBase
     {
         private Account account;
 
@@ -17,7 +17,7 @@ namespace Konger.CoreAngular.DAL
         {
             var success = false;
 
-            using (var connection = SQLHelper.GetConnection())
+            using (var connection = this.CreateConnection())
             {
                 using (var cmd = new SqlCommand())
                 {

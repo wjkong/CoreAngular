@@ -1,22 +1,49 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data.Common;
-using System.Text;
+﻿using System.Data.SqlClient;
 
 namespace Konger.CoreAngular.DAL
 {
-    public abstract class DataAccessBase
+    public class DataAccessBase
     {
-        protected readonly string ConnectionString = ConfigurationManager.ConnectionStrings["ApiExpertConn"].ToString();
+        protected SqlConnection CreateConnection()
+        {
+            return new SqlConnection(GetDBConnectionString());
+        }
 
+        private string GetDBConnectionString()
+        {
+            string connectionStr = string.Empty;
 
-        //protected DbConnection CreateConnection()
-        //{
-        //    return CreateConnection(_connStrSetting);
-        //}
+            //try
+            //{
+            //    var creds = new InstanceProfileAWSCredentials();
+            //    var ssmClient = new AmazonSimpleSystemsManagementClient(creds);
+            //    var request = new GetParameterRequest()
+            //    {
+            //        Name = "/kongsolution/Prod/ConnectionStr",
+            //        WithDecryption = true
+            //    };
 
-        //private DbConnection CreateConnection(ConnectionStringSettings connStrSetting)
+            //    var response = ssmClient.GetParameterAsync(request).GetAwaiter().GetResult();
+
+            //    if (response.Parameter != null)
+            //    {
+            //        connectionStr = response.Parameter.Value;
+
+            //    }
+
+            //}
+            //catch
+            //{
+
+            //}
+
+            if (string.IsNullOrEmpty(connectionStr))
+                connectionStr = @"Data Source=kongsqldb.cugvbjkpc2us.ca-central-1.rds.amazonaws.com;Initial Catalog=awsdb;Integrated Security=false;User ID=wjkong;Password=Wj730615!";
+
+            return connectionStr;
+        }
+
+        //private DbConnection CreateConnection()
         //{
         //    DbConnection conn = null;
 
