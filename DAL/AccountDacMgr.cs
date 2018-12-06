@@ -1,4 +1,5 @@
 ﻿using Konger.CoreAngular.Model;
+using Microsoft.Extensions.Caching.Memory;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -8,7 +9,7 @@ namespace Konger.CoreAngular.DAL
     {
         private Account account;
 
-        public AccountDacMgr(Account _account)
+        public AccountDacMgr(Account _account, IMemoryCache memoryCache) : base(memoryCache)
         {
             account = _account;
         }

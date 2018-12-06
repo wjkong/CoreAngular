@@ -1,5 +1,6 @@
 ﻿using Konger.CoreAngular.DAL;
 using Konger.CoreAngular.Model;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Konger.CoreAngular.Logic
 {
@@ -8,9 +9,9 @@ namespace Konger.CoreAngular.Logic
 
         AccountDacMgr dacMgr;
 
-        public AccountMgr(Account _account)
+        public AccountMgr(Account _account, IMemoryCache memoryCache)
         {
-            dacMgr = new AccountDacMgr(_account);
+            dacMgr = new AccountDacMgr(_account, memoryCache);
         }
 
         public bool Add()

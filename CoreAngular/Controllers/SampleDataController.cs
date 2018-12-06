@@ -1,6 +1,7 @@
 using Konger.CoreAngular.Logic;
 using Konger.CoreAngular.Model;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,12 @@ namespace CoreAngular.Controllers
     [Route("api/[controller]")]
     public class SampleDataController : Controller
     {
+        private IMemoryCache _cache;
+        public SampleDataController(IMemoryCache memoryCache)
+        {
+            _cache = memoryCache;
+        }
+
         private static string[] Summaries = new[]
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
@@ -40,7 +47,7 @@ namespace CoreAngular.Controllers
                 Password = account.Password
             };
 
-            var accountMgr = new AccountMgr(userAccount);
+            var accountMgr = new AccountMgr(userAccount, _cache);
 
 
             success = accountMgr.Add();
