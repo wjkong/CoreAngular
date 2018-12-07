@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NLog.Extensions.Logging;
 using NLog.Web;
+using System;
 
 namespace CoreAngular
 {
@@ -77,6 +78,7 @@ namespace CoreAngular
 
                 if (env.IsDevelopment())
                 {
+                    //spa.Options.StartupTimeout = new TimeSpan(0, 0, 80);
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
