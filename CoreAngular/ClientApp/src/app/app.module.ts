@@ -12,6 +12,9 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { MortgageCalculatorComponent } from './mortgage-calculator/mortgage-calculator.component';
 import { UserRegisterComponent } from './user-register/user-register.component';
+import { AppRoutingModule } from './app-routing.module';
+
+
 
 @NgModule({
   declarations: [
@@ -28,13 +31,7 @@ import { UserRegisterComponent } from './user-register/user-register.component';
     HttpClientModule,
     FormsModule,
     CurrencyMaskModule,
-    RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
-      { path: 'mortgage-calculator', component: MortgageCalculatorComponent },
-      { path: 'user-register', component: UserRegisterComponent }
-    ])
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,51 +1,22 @@
+using Konger.CoreAngular.Logic;
+using Konger.CoreAngular.Model;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 
 namespace CoreAngular.Controllers
 {
+
+
     [Route("api/[controller]")]
     public class SampleDataController : Controller
     {
-        private readonly IConfiguration _configuration;
-        private string connectionString;
-
-        public SampleDataController(IConfiguration configuration)
+        private IMemoryCache _cache;
+        public SampleDataController(IMemoryCache memoryCache)
         {
-            _configuration = configuration;
-            SqlConnection connection = null;
-
-            connectionString = _configuration.GetConnectionString("appDbConnection");
-
-            try
-            {
-                connection = new SqlConnection(connectionString);
-
-                using (var cmd = new SqlCommand
-                {
-                    Connection = connection,
-                    CommandText = @"INSERT INTO [dbo].[account] ([username] ,[password]) VALUES (@username, @password)",
-                    CommandType = CommandType.Text
-                })
-                {
-                    connection = null;
-
-                    cmd.Parameters.AddWithValue("@username", "Shun Shun");
-                    cmd.Parameters.AddWithValue("@password", "12313");
-
-                    cmd.Connection.Open();
-                    cmd.ExecuteNonQuery();
-                }
-
-            }
-            finally
-            {
-                connection?.Dispose();
-            }
+            _cache = memoryCache;
         }
 
         private static string[] Summaries = new[]
@@ -63,6 +34,26 @@ namespace CoreAngular.Controllers
                 TemperatureC = rng.Next(-20, 55),
                 Summary = Summaries[rng.Next(Summaries.Length)]
             });
+        }
+
+        [HttpPost("[action]")]
+        public bool RegisterUser([FromBody]Account account)
+        {
+            bool success = false;
+
+            var userAccount = new Account
+            {
+                UserName = account.UserName,
+                Password = account.Password
+            };
+
+            var accountMgr = new AccountMgr(userAccount, _cache);
+
+
+            success = accountMgr.Add();
+
+
+            return success;
         }
 
         public class WeatherForecast

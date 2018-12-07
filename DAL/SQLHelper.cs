@@ -1,5 +1,7 @@
-﻿using Konger.CoreAngular.Model;
-using System.Configuration;
+﻿using Amazon.Runtime;
+using Amazon.SimpleSystemsManagement;
+using Amazon.SimpleSystemsManagement.Model;
+using Konger.CoreAngular.Model;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -7,6 +9,41 @@ namespace Konger.CoreAngular.DAL
 {
     public abstract class SQLHelper
     {
+
+        public static string GetDBConnectionString()
+        {
+            string connectionStr = string.Empty;
+
+            //try
+            //{
+            //    var creds = new InstanceProfileAWSCredentials();
+            //    var ssmClient = new AmazonSimpleSystemsManagementClient(creds);
+            //    var request = new GetParameterRequest()
+            //    {
+            //        Name = "/kongsolution/Prod/ConnectionStr",
+            //        WithDecryption = true
+            //    };
+
+            //    var response = ssmClient.GetParameterAsync(request).GetAwaiter().GetResult();
+
+            //    if (response.Parameter != null)
+            //    {
+            //        connectionStr = response.Parameter.Value;
+
+            //    }
+
+            //}
+            //catch
+            //{
+
+            //}
+
+            if (string.IsNullOrEmpty(connectionStr))
+                connectionStr = @"Data Source=kongsqldb.cugvbjkpc2us.ca-central-1.rds.amazonaws.com;Initial Catalog=awsdb;Integrated Security=false;User ID=wjkong;Password=Wj730615!";
+
+            return connectionStr;
+        }
+
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities")]
         public static SqlCommand CreateCommand(string comText)
@@ -40,7 +77,7 @@ namespace Konger.CoreAngular.DAL
 
         public static SqlConnection GetConnection()
         {
-            return new SqlConnection(ConfigurationManager.ConnectionStrings["ApiExpertConn"].ToString());
+            return new SqlConnection(GetDBConnectionString());
         }
 
         public static SqlParameter PrepareOutputParam(SqlCommand com, string param)
