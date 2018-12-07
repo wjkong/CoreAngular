@@ -37,7 +37,6 @@ namespace Konger.CoreAngular.DAL
                     //if (string.IsNullOrEmpty(connectionStr))
                     //    connectionStr = @"Data Source=kongsqldb.cugvbjkpc2us.ca-central-1.rds.amazonaws.com;Initial Catalog=awsdb;Integrated Security=false;User ID=wjkong;Password=Wj730615!";
 
-
                     var creds = new InstanceProfileAWSCredentials();
                     var ssmClient = new AmazonSimpleSystemsManagementClient(creds);
                     var request = new GetParameterRequest()
@@ -56,6 +55,7 @@ namespace Konger.CoreAngular.DAL
 
                         this._memoryCache.Set(keyConnectionStr, connectionStr, cacheEntryOptions);
                     }
+
                 }
             }
             catch
