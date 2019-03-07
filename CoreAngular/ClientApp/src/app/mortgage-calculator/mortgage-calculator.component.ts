@@ -23,7 +23,7 @@ export class MortgageCalculatorComponent implements OnInit {
   {
     this.payments = [];
 
-    for (var i = 1; i <= 25; i++)
+    for (var i = 1; i <= 30; i++)
     {
       this.yearArray.push(i);
     }
