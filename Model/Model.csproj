@@ -7,4 +7,9 @@
     <RootNamespace>Konger.CoreAngular.Model</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AWSSDK.Core" Version="3.3.104.11" />
+    <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.3.104.13" />
+  </ItemGroup>
+
 </Project>
