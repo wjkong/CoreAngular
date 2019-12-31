@@ -4,7 +4,7 @@
     "profile" : "default",
     "region"  : "ca-central-1",
     "application" : "CoreAngular",
-    "environment" : "CoreAngular-dev",
+    "environment" : "CoreAngular-prod",
     "cname"       : "coreangular-dev",
     "solution-stack" : "64bit Windows Server 2016 v2.3.2 running IIS 10.0",
     "environment-type" : "SingleInstance",
