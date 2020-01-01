@@ -1,3 +1,4 @@
+using Konger.CoreAngular.Logic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -33,7 +34,8 @@ namespace CoreAngular
                 configuration.RootPath = "ClientApp/dist";
             });
 
-            //services.AddTransient<IDbConnection>((sp) => new SqlConnection(this.Configuration.GetConnectionString("appDbConnection")));
+            services.AddScoped<IFeedbackMgr, FeedbackMgr>();
+            services.AddScoped<IAccountMgr, AccountMgr>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,3 +1,8 @@
+using Amazon;
+using Amazon.DynamoDBv2;
+using Amazon.DynamoDBv2.DocumentModel;
+using Amazon.DynamoDBv2.Model;
+using Amazon.Runtime;
 using Konger.CoreAngular.Logic;
 using Konger.CoreAngular.Model;
 using Microsoft.AspNetCore.Mvc;
@@ -14,9 +19,12 @@ namespace CoreAngular.Controllers
     public class SampleDataController : Controller
     {
         private IMemoryCache _cache;
-        public SampleDataController(IMemoryCache memoryCache)
+        private IAccountMgr _accountMgr;
+
+        public SampleDataController(IMemoryCache memoryCache, IAccountMgr accountMgr)
         {
             _cache = memoryCache;
+            _accountMgr = accountMgr;
         }
 
         private static string[] Summaries = new[]
@@ -27,6 +35,32 @@ namespace CoreAngular.Controllers
         [HttpGet("[action]")]
         public IEnumerable<WeatherForecast> WeatherForecasts()
         {
+            //AmazonDynamoDBClient client = new AmazonDynamoDBClient(RegionEndpoint.CACentral1);
+            //Table table = Table.LoadTable(client, "Product");
+
+            //var document = table.GetItemAsync(;
+
+            //var deal = new Document();
+            //deal["ProductId"] = "1111133";
+            //deal["Name"] = "Stove";
+
+            //table.PutItemAsync(deal);
+
+            
+            //Dictionary<string, AttributeValue> attributes = new Dictionary<string, AttributeValue>();
+
+
+            //attributes["Date"] = new AttributeValue { S = "12/31/2019" };
+            //attributes["Amount"] = new AttributeValue { S = "193300" };
+
+            //PutItemRequest request = new PutItemRequest
+            //{
+            //    TableName = "RRSP",
+            //    Item = attributes
+            //};
+
+            //client.PutItemAsync(request);
+
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
@@ -41,16 +75,17 @@ namespace CoreAngular.Controllers
         {
             bool success = false;
 
-            var userAccount = new Account
-            {
-                UserName = account.UserName,
-                Password = account.Password
-            };
+            //var userAccount = new Account
+            //{
+            //    UserName = account.UserName,
+            //    Password = account.Password
+            //};
 
-            var accountMgr = new AccountMgr(userAccount, _cache);
+            
+            //var accountMgr = new AccountMgr(userAccount, _cache);
 
 
-            success = accountMgr.Add();
+            success = _accountMgr.Add(account);
 
 
             return success;

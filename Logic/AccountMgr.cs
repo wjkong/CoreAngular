@@ -4,23 +4,27 @@ using Microsoft.Extensions.Caching.Memory;
 
 namespace Konger.CoreAngular.Logic
 {
-    public class AccountMgr : Account
+    public interface IAccountMgr 
     {
+        bool Add(Account account);
+    }
 
+    public class AccountMgr : IAccountMgr
+    {
         AccountDacMgr dacMgr;
 
-        public AccountMgr(Account _account, IMemoryCache memoryCache)
+        public AccountMgr()
         {
-            dacMgr = new AccountDacMgr(_account, memoryCache);
+            
         }
 
-        public bool Add()
+        public bool Add(Account account)
         {
             bool result = false;
 
             try
             {
-                result = dacMgr.InsertUser();
+                result = true;
             }
             catch
             {
