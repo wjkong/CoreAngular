@@ -17,7 +17,6 @@ export class MortgageCalculatorComponent implements OnInit {
   paymentAmtPerPeriod: number;
   payments: InstallPayment[];
   showDetail: boolean = false;
- 
 
   constructor()
   {
@@ -27,7 +26,6 @@ export class MortgageCalculatorComponent implements OnInit {
     {
       this.yearArray.push(i);
     }
-   
   }
 
   ngOnInit() {
@@ -56,8 +54,6 @@ export class MortgageCalculatorComponent implements OnInit {
           totalMonthlyCostOfBorrow = this.payments[i].totalCostOfBorrow;
 
         this.payments[i].amountSave = totalMonthlyCostOfBorrow - this.payments[i].totalCostOfBorrow;
-
-
       }
     }
   }
