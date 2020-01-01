@@ -8,7 +8,6 @@ import { CurrencyMaskModule } from "ng2-currency-mask";
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { MortgageCalculatorComponent } from './mortgage-calculator/mortgage-calculator.component';
 import { UserRegisterComponent } from './user-register/user-register.component';
@@ -21,7 +20,6 @@ import { AppRoutingModule } from './app-routing.module';
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    CounterComponent,
     FetchDataComponent,
     MortgageCalculatorComponent,
     UserRegisterComponent
