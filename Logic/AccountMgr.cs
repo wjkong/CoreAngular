@@ -24,6 +24,7 @@ namespace Konger.CoreAngular.Logic
 
             try
             {
+
                 result = true;
             }
             catch
