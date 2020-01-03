@@ -23,32 +23,22 @@ namespace CoreAngular.Controllers
             AccountMgr = accountMgr;
         }
 
+
+        //[HttpGet]
+        //public async Task<IActionResult> GetUser([FromQuery] string username)
+        //{
+        //    //var response = await AccountMgr;
+        //    AmazonDynamoDBClient client = new AmazonDynamoDBClient(RegionEndpoint.CACentral1);
+
+        //    return Ok(response);
+        //}
+
         [HttpPost("[action]")]
         public bool RegisterUser([FromBody]Account account)
         {
             bool success = false;
 
-            AmazonDynamoDBClient client = new AmazonDynamoDBClient(RegionEndpoint.CACentral1);
-
-            Dictionary<string, AttributeValue> attributes = new Dictionary<string, AttributeValue>();
-
-
-            attributes["username"] = new AttributeValue { S = account.UserName };
-            attributes["password"] = new AttributeValue { S = account.Password };
-
-            PutItemRequest request = new PutItemRequest
-            {
-                TableName = "User",
-                Item = attributes
-            };
-
-
-            client.PutItemAsync(request);
-
-            //success = AccountMgr.Add(account);
-
-            //success = _accountMgr.Add(account);
-
+            success = AccountMgr.Add(account);
 
             return success;
         }
