@@ -1,7 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+	<RuntimeFrameworkVersion>2.2.0</RuntimeFrameworkVersion>
     <AssemblyName>Konger.CoreAngular.DAL</AssemblyName>
     <RootNamespace>Konger.CoreAngular.DAL</RootNamespace>
   </PropertyGroup>
@@ -11,9 +12,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AWSSDK.Core" Version="3.3.104.11" />
+    <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.3.104.13" />
     <PackageReference Include="AWSSDK.SimpleSystemsManagement" Version="3.3.37" />
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.1.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.5.1" />
   </ItemGroup>

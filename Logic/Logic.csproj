@@ -1,12 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+	<RuntimeFrameworkVersion>2.2.0</RuntimeFrameworkVersion>
     <AssemblyName>Konger.CoreAngular.Logic</AssemblyName>
     <RootNamespace>Konger.CoreAngular.Logic</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AWSSDK.Core" Version="3.3.104.11" />
+    <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.3.104.13" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
   </ItemGroup>
 

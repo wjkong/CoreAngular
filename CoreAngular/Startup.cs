@@ -1,12 +1,12 @@
+using Konger.CoreAngular.Logic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using NLog.Extensions.Logging;
-using NLog.Web;
 
 namespace CoreAngular
 {
@@ -32,18 +32,19 @@ namespace CoreAngular
                 configuration.RootPath = "ClientApp/dist";
             });
 
-            //services.AddTransient<IDbConnection>((sp) => new SqlConnection(this.Configuration.GetConnectionString("appDbConnection")));
+            services.AddScoped<IFeedbackMgr, FeedbackMgr>();
+            services.AddScoped<IAccountMgr, AccountMgr>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
-            env.ConfigureNLog("nlog.config");
-            //add NLog to ASP.NET Core
-            loggerFactory.AddNLog();
+            //env.ConfigureNLog("nlog.config");
+            ////add NLog to ASP.NET Core
+            //loggerFactory.AddNLog();
 
-            //add NLog.Web
-            app.AddNLogWeb();
+            ////add NLog.Web
+            //app.AddNLogWeb();
 
             //Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
@@ -59,15 +60,14 @@ namespace CoreAngular
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseRouting();
             app.UseSpaStaticFiles();
 
-            app.UseMvc(routes =>
+            app.UseEndpoints(endpoints => 
             {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
             });
-
+        
             app.UseSpa(spa =>
             {
                 // To learn more about options for serving an Angular SPA from ASP.NET Core,
@@ -77,6 +77,7 @@ namespace CoreAngular
 
                 if (env.IsDevelopment())
                 {
+                    //spa.Options.StartupTimeout = new TimeSpan(0, 0, 80);
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });

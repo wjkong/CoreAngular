@@ -1,3 +1,8 @@
+using Amazon;
+using Amazon.DynamoDBv2;
+using Amazon.DynamoDBv2.DocumentModel;
+using Amazon.DynamoDBv2.Model;
+using Amazon.Runtime;
 using Konger.CoreAngular.Logic;
 using Konger.CoreAngular.Model;
 using Microsoft.AspNetCore.Mvc;
@@ -13,11 +18,6 @@ namespace CoreAngular.Controllers
     [Route("api/[controller]")]
     public class SampleDataController : Controller
     {
-        private IMemoryCache _cache;
-        public SampleDataController(IMemoryCache memoryCache)
-        {
-            _cache = memoryCache;
-        }
 
         private static string[] Summaries = new[]
         {
@@ -35,27 +35,6 @@ namespace CoreAngular.Controllers
                 Summary = Summaries[rng.Next(Summaries.Length)]
             });
         }
-
-        [HttpPost("[action]")]
-        public bool RegisterUser([FromBody]Account account)
-        {
-            bool success = false;
-
-            var userAccount = new Account
-            {
-                UserName = account.UserName,
-                Password = account.Password
-            };
-
-            var accountMgr = new AccountMgr(userAccount, _cache);
-
-
-            success = accountMgr.Add();
-
-
-            return success;
-        }
-
         public class WeatherForecast
         {
             public string DateFormatted { get; set; }

@@ -19,7 +19,7 @@ export class UserRegisterComponent implements OnInit {
   }
 
   register(user: User): void {
-    this.http.post<Boolean>(this._baseUrl + 'api/SampleData/RegisterUser', user).subscribe(result => {
+    this.http.post<Boolean>(this._baseUrl + 'api/User/RegisterUser', user).subscribe(result => {
       if (result) {
         user.password = "";
         user.username = "";
