@@ -12,6 +12,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { MortgageCalculatorComponent } from './mortgage-calculator/mortgage-calculator.component';
 import { UserRegisterComponent } from './user-register/user-register.component';
 import { AppRoutingModule } from './app-routing.module';
+import { OnlineRebateComponent } from './online-rebate/online-rebate.component';
 
 
 
@@ -22,7 +23,8 @@ import { AppRoutingModule } from './app-routing.module';
     HomeComponent,
     FetchDataComponent,
     MortgageCalculatorComponent,
-    UserRegisterComponent
+    UserRegisterComponent,
+    OnlineRebateComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

@@ -4,7 +4,7 @@
     <div class="form-group row" style="padding-bottom:10px">
       <label class="control-label col-sm-3 required" for="txtMortgageAmt">Mortgage Amount</label>
       <div class="col-sm-9">
-        <input type=text id="txtMortgageAmt" class="form-control required" maxlength="12" android:maxLength="12" (blur)="calculate()" autofocus [(ngModel)]="principal" currencyMask [options]="{ precision: 0, allowNegative: false, allowZero: false }" />
+        <input type=text id="txtMortgageAmt" class="form-control required" maxlength="12" android:maxLength="12" (blur)="calculate()" autofocus [(ngModel)]="principal" />
       </div>
     </div>
     <div class="form-group row">

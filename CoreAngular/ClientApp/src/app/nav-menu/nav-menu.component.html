@@ -28,6 +28,11 @@
               </a>
             </li>
             <li [routerLinkActive]='["link-active"]'>
+              <a [routerLink]='["/online-rebate"]' (click)='collapse()'>
+                <span class='glyphicon glyphicon-user'></span> Online Rebate
+              </a>
+            </li>
+            <li [routerLinkActive]='["link-active"]'>
               <a [routerLink]='["/user-register"]' (click)='collapse()'>
                 <span class='glyphicon glyphicon-user'></span> Register User
               </a>
